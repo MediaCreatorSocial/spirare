@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* --- VARIÁVEIS DE CORES --- */
@@ -28,8 +28,12 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Montserrat', sans-serif; /* Fonte Montserrat aplicada globalmente */
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--cor-branco);
             color: var(--cor-texto-escuro);
             line-height: 1.6;
@@ -49,33 +53,58 @@
         a {
             text-decoration: none;
             color: inherit;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
 
         ul {
             list-style: none;
         }
 
+        /* --- ANIMAÇÕES --- */
+        /* Classe base para elementos que irão animar ao entrar na tela */
+        .animate-block {
+            opacity: 0;
+            transform: translateY(30px); /* Começa um pouco mais para baixo */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Classe adicionada via JS quando o elemento fica visível */
+        .animate-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Delays para animações em sequência (ex: cards) */
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+        .delay-3 { transition-delay: 0.6s; }
+
+        /* Animação de pulso para o WhatsApp */
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
         /* --- HEADER E NAVEGAÇÃO --- */
         header {
-            background-color: var(--cor-fundo-claro);
-            padding: 1rem 5%;
+            background-color: rgba(240, 222, 212, 0.95); /* Leve transparência */
+            backdrop-filter: blur(5px);
+            padding: 0.8rem 5%;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.3s ease;
         }
 
-        .logo-container {
-            font-size: 1.5rem;
-            color: var(--cor-secundaria);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .logo-container img {
+            max-height: 55px; /* Ajuste da altura da logo no header */
+            width: auto;
         }
 
         /* Menu Desktop */
@@ -85,50 +114,70 @@
         }
 
         nav a {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: var(--cor-texto-escuro);
             font-weight: 500;
+            position: relative;
         }
 
-        nav a:hover {
-            color: var(--cor-primaria);
+        /* Efeito de sublinhado animado no menu */
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--cor-primaria);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         /* --- HERO SECTION (Área Principal) --- */
         .hero {
-            height: 100vh;
-            /* Fundo configurado para flowers.png */
-            background: linear-gradient(rgba(240, 222, 212, 0.7), rgba(240, 222, 212, 0.5)), url('flowers.png');
+            min-height: 100vh;
+            /* Fundo com overlay gradiente e imagem */
+            background: linear-gradient(rgba(240, 222, 212, 0.6), rgba(147, 100, 80, 0.2)), url('flowers.png');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed; /* Efeito parallax simples */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: 0 20px;
-            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            color: var(--cor-secundaria);
+            font-size: 3.5rem;
+            color: var(--cor-texto-escuro);
             margin-bottom: 1rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
             color: var(--cor-texto-escuro);
             font-weight: 400;
+            font-style: italic;
         }
 
+        /* Botões CTA (Call to Action) */
         .cta-button {
+            display: inline-block;
             background-color: var(--cor-primaria);
             color: var(--cor-branco);
             padding: 15px 40px;
@@ -136,49 +185,66 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            border: 1px solid var(--cor-primaria);
+            border: 2px solid var(--cor-primaria);
             font-weight: 600;
+            box-shadow: 0 5px 15px rgba(147, 100, 80, 0.2);
         }
 
         .cta-button:hover {
             background-color: transparent;
             color: var(--cor-primaria);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(147, 100, 80, 0.3);
+        }
+        
+        .header-btn {
+             padding: 10px 25px; 
+             font-size: 0.75rem;
+             box-shadow: none;
         }
 
-        /* --- SEÇÃO SOBRE A SPIRARE --- */
-        .sobre-spirare {
-            padding: 80px 10%;
-            background-color: var(--cor-branco);
-            text-align: center;
+        /* --- SEÇÕES GERAIS --- */
+        section {
+            padding: 100px 10%;
         }
 
         .section-title {
             font-size: 2.2rem;
             color: var(--cor-primaria);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             position: relative;
             display: inline-block;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
         
         .section-title::after {
             content: '';
             display: block;
             width: 60px;
-            height: 2px;
+            height: 3px;
             background-color: var(--cor-destaque);
             margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- SEÇÃO SOBRE A SPIRARE --- */
+        .sobre-spirare {
+            background-color: var(--cor-branco);
+            text-align: center;
         }
 
         .sobre-spirare p {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             margin-bottom: 1.5rem;
             color: #555;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .quote {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 300;
             font-style: italic;
             color: var(--cor-secundaria);
@@ -188,22 +254,26 @@
 
         /* --- SEÇÃO JÉSSICA RECH (Perfil) --- */
         .perfil {
-            padding: 80px 10%;
             background-color: var(--cor-fundo-claro);
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            gap: 50px;
+            gap: 60px;
         }
 
         .perfil-img {
             flex: 1;
             min-width: 300px;
             max-width: 450px;
-            border-radius: 20px;
+            border-radius: 30px; /* Bordas mais arredondadas */
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(82, 31, 2, 0.1);
+            box-shadow: 0 20px 40px rgba(82, 31, 2, 0.15);
+            transition: transform 0.5s ease;
+        }
+        
+        .perfil-img:hover {
+             transform: scale(1.02);
         }
 
         .perfil-texto {
@@ -212,97 +282,147 @@
         }
 
         .perfil-texto h2 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             color: var(--cor-texto-escuro);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .perfil-texto h3 {
-            font-size: 0.9rem;
+            font-size: 1rem;
             text-transform: uppercase;
             color: var(--cor-primaria);
-            margin-bottom: 1.5rem;
-            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            letter-spacing: 3px;
             font-weight: 600;
+            display: inline-block;
+            border-bottom: 2px solid var(--cor-destaque);
+            padding-bottom: 5px;
+        }
+        
+        .perfil-texto p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
         }
 
         /* --- SEÇÃO POR QUE AGENDAR --- */
         .beneficios {
-            padding: 80px 10%;
             background-color: var(--cor-branco);
             text-align: center;
         }
 
         .grid-beneficios {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            margin-bottom: 60px;
         }
 
         .card {
-            padding: 30px;
-            border: 1px solid var(--cor-fundo-claro);
-            border-radius: 10px;
-            transition: transform 0.3s;
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            border: 1px solid rgba(240, 222, 212, 0.3);
+            transition: all 0.4s ease;
+            height: 100%;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(147, 100, 80, 0.1);
             border-color: var(--cor-destaque);
         }
 
         .card i {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--cor-secundaria);
-            margin-bottom: 15px;
+            margin-bottom: 25px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover i {
+            transform: scale(1.1);
+            color: var(--cor-primaria);
         }
 
         .card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
             color: var(--cor-primaria);
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* --- RODAPÉ --- */
         footer {
             background-color: var(--cor-texto-escuro);
             color: var(--cor-destaque);
-            padding: 40px 10%;
+            padding: 60px 10%;
             text-align: center;
         }
+        
+        footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--cor-branco);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-        footer p {
-            font-size: 0.9rem;
-            margin-bottom: 10px;
+        .social-links {
+            margin: 30px 0;
         }
 
         .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
             color: var(--cor-branco);
             font-size: 1.5rem;
             margin: 0 10px;
+            transition: all 0.4s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--cor-primaria);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 20px;
         }
 
         /* --- BOTÃO FLUTUANTE DO WHATSAPP --- */
         .whatsapp-float {
             position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
+            width: 65px;
+            height: 65px;
+            bottom: 30px;
+            right: 30px;
             background-color: #25d366;
             color: #FFF;
             border-radius: 50px;
             text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
+            font-size: 35px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
             z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
+            /* Animação de pulso contínua */
+            animation: pulse-border 2s infinite;
         }
 
         .whatsapp-float:hover {
@@ -310,18 +430,31 @@
             background-color: #20ba5a;
         }
 
+        /* Responsividade */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .perfil { flex-direction: column; text-align: center; }
-            .perfil-img { width: 100%; }
-            nav ul { display: none; }
+            header { padding: 0.8rem 20px; }
+            .logo-container img { max-height: 45px; }
+            nav ul { display: none; } /* Menu oculto no mobile por enquanto */
+            .header-btn { display: none; } /* Botão agendar do header oculto no mobile */
+            
+            .hero h1 { font-size: 2.2rem; letter-spacing: 2px; }
+            .hero p { font-size: 1.1rem; }
+            
+            section { padding: 60px 20px; }
+            .section-title { font-size: 1.8rem; }
+            
+            .perfil { flex-direction: column; text-align: center; gap: 30px; }
+            .perfil-img { width: 100%; max-width: 400px; }
+            .perfil-texto h3 { display: inline-block; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-container">Spirare</div>
+        <a href="#inicio" class="logo-container">
+            <img src="logo.png" alt="Spirare Terapias Integrativas Logo">
+        </a>
         <nav>
             <ul>
                 <li><a href="#inicio">Início</a></li>
@@ -330,84 +463,130 @@
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
-        <a href="https://wa.me/5548992055109?text=Ol%C3%A1,%20gostaria%20de%20agendar%20uma%20consulta." class="cta-button" style="padding: 10px 25px; font-size: 0.8rem;" target="_blank">Agendar</a>
+        <a href="https://wa.me/5548992055109?text=Ol%C3%A1,%20gostaria%20de%20agendar%20uma%20consulta." class="cta-button header-btn" target="_blank">Agendar</a>
     </header>
 
     <section id="inicio" class="hero">
-        <h1>Respire. Sinta. Reconecte-se.</h1>
-        <p>"Você já parou para sentir a sua respiração hoje?"</p>
-        <a href="https://wa.me/5548992055109?text=Ol%C3%A1,%20gostaria%20de%20agendar%20uma%20consulta." class="cta-button" target="_blank">Agendar Sessão</a>
+        <div class="hero-content">
+            <h1 class="animate-block">Respire. Sinta. Reconecte-se.</h1>
+            <p class="animate-block delay-1">"Você já parou para sentir a sua respiração hoje?"</p>
+            <div class="animate-block delay-2">
+                <a href="https://wa.me/5548992055109?text=Ol%C3%A1,%20gostaria%20de%20agendar%20uma%20consulta." class="cta-button" target="_blank">Agendar Sessão</a>
+            </div>
+        </div>
     </section>
 
     <section id="sobre" class="sobre-spirare">
-        <h2 class="section-title">A Essência Spirare</h2>
-        <span class="quote">"Do latim spirare: respirar, soprar, dar vida."</span>
-        <p>A Spirare nasce como uma proposta de cuidado consciente. Aqui, acreditamos que o bem-estar vai além do corpo físico; é uma integração entre o toque, a respiração e a energia vital.</p>
-        <p>Respirar é presença. É pausa. É o primeiro passo para o equilíbrio entre corpo, mente e energia. Em nosso espaço, cada prática e cada silêncio convidam você a inspirar mais leve e expirar o que já não precisa ficar.</p>
+        <div class="animate-block">
+            <h2 class="section-title">A Essência Spirare</h2>
+        </div>
+        <span class="quote animate-block delay-1">"Do latim spirare: respirar, soprar, dar vida."</span>
+        <div class="animate-block delay-2">
+            <p>A Spirare nasce como uma proposta de cuidado consciente. Aqui, acreditamos que o bem-estar vai além do corpo físico; é uma integração entre o toque, a respiração e a energia vital.</p>
+            <p>Respirar é presença. É pausa. É o primeiro passo para o equilíbrio entre corpo, mente e energia. Em nosso espaço, cada prática e cada silêncio convidam você a inspirar mais leve e expirar o que já não precisa ficar.</p>
+        </div>
     </section>
 
     <section class="perfil">
-        <div class="perfil-img">
-            <img src="jessica.png" alt="Jéssica Rech">
+        <div class="perfil-img animate-block">
+            <img src="jessica.png" alt="Jéssica Rech - Terapeuta Integrativa">
         </div>
-        <div class="perfil-texto">
+        <div class="perfil-texto animate-block delay-1">
             <h2>Olá, sou Jéssica Rech</h2>
             <h3>Massoterapeuta & Terapeuta Integrativa</h3>
             <p>Realizo atendimentos voltados ao relaxamento profundo e ao reequilíbrio energético. Meu trabalho é oferecer um refúgio de calma em meio à rotina agitada.</p>
-            <br>
             <p>Utilizo técnicas consagradas como a <strong>Massoterapia</strong> para alívio de dores, o <strong>Reiki</strong> para harmonização energética e a <strong>Hipnose</strong> para o cuidado da mente.</p>
+            <p style="font-weight: 600; color: var(--cor-primaria); margin-top: 2rem;">✨ Cuidado que começa de dentro para fora</p>
         </div>
     </section>
 
     <section id="terapias" class="beneficios">
-        <h2 class="section-title">Por que agendar uma sessão?</h2>
-        <p>O toque vai além das mãos. Ele carrega intenção, cuidado e essência.</p>
+        <div class="animate-block">
+            <h2 class="section-title">Por que agendar uma sessão?</h2>
+            <p style="max-width: 600px; margin: 0 auto;">O toque vai além das mãos. Ele carrega intenção, cuidado e essência.</p>
+        </div>
         
         <div class="grid-beneficios">
-            <div class="card">
+            <div class="card animate-block">
                 <i class="fas fa-spa"></i>
                 <h4>Alívio do Estresse</h4>
-                <p>Desconecte-se das preocupações e reduza os níveis de cortisol, permitindo que seu corpo entre em estado de recuperação.</p>
+                <p>Desconecte-se das preocupações e reduza os níveis de cortisol, permitindo que seu corpo entre em estado de recuperação profunda.</p>
             </div>
-            <div class="card">
+            <div class="card animate-block delay-1">
                 <i class="fas fa-heartbeat"></i>
-                <h4>Dores Musculares</h4>
-                <p>Técnicas manuais que liberam a tensão acumulada, melhorando a mobilidade e o conforto físico.</p>
+                <h4>Alívio de Dores</h4>
+                <p>Técnicas manuais focadas que liberam a tensão muscular acumulada, melhorando a mobilidade, flexibilidade e o conforto físico.</p>
             </div>
-            <div class="card">
+            <div class="card animate-block delay-2">
                 <i class="fas fa-sun"></i>
                 <h4>Reequilíbrio Energético</h4>
-                <p>Através do Reiki e terapias integrativas, alinhamos sua energia vital para uma sensação de paz interior.</p>
+                <p>Através do Reiki e terapias integrativas, alinhamos seus centros de energia vital para promover uma sensação duradoura de paz interior.</p>
             </div>
         </div>
         
-        <br><br>
-        <a href="https://wa.me/5548992055109?text=Ol%C3%A1,%20gostaria%20de%20agendar%20uma%20consulta." class="cta-button" target="_blank">Quero me sentir bem</a>
+        <div class="animate-block delay-3">
+            <a href="https://wa.me/5548992055109?text=Ol%C3%A1,%20gostaria%20de%20agendar%20uma%20consulta." class="cta-button" target="_blank">Quero me sentir bem</a>
+        </div>
     </section>
 
     <footer id="contato">
         <h3>Spirare - Terapias Integrativas</h3>
         <p>Cuidado que começa de dentro para fora.</p>
+        
         <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-        </div>
-        <br>
-        <p style="font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Spirare. Todos os direitos reservados.</p>
+            <a href="https://instagram.com/spirare_studio" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        
+        <p class="copyright">&copy; 2026 Spirare Terapias Integrativas. Todos os direitos reservados.</p>
     </footer>
 
-    <a href="https://wa.me/5548992055109?text=Ol%C3%A1,%20vim%20pelo%20Site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es!" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/5548992055109?text=Ol%C3%A1,%20vim%20pelo%20Site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es!" class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
+        // 1. Smooth Scroll para links internos
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                if (targetId === '#inicio') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
+        });
+
+        // 2. Intersection Observer para animações ao rolar a página
+        // Configura o observador para disparar quando 20% do elemento estiver visível
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2 
+        };
+
+        // Função que é chamada quando os elementos entram na tela
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                // Se o elemento entrou na área visível
+                if (entry.isIntersecting) {
+                    // Adiciona a classe 'visible' que dispara a animação CSS
+                    entry.target.classList.add('visible');
+                    // Para de observar o elemento depois que ele já animou uma vez (opcional)
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        };
+
+        // Cria o observador
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        // Seleciona todos os elementos com a classe .animate-block e começa a observá-los
+        document.querySelectorAll('.animate-block').forEach(element => {
+            observer.observe(element);
         });
     </script>
 </body>
