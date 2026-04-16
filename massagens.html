@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Experiência — Spirare Terapias Integrativas</title>
+<meta name="description" content="Descubra como é viver uma sessão na Spirare. Uma experiência de cuidado real, do toque à transformação.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+    --t:#936450; --c:#f0ded4; --s:#737a6a; --b:#e6bfa1;
+    --m:#521f02; --w:#ffffff; --o:#fdf8f5;
+    --ff:'Montserrat',sans-serif;
+    --sp:cubic-bezier(.34,1.56,.64,1);
+    --ease:cubic-bezier(.25,.46,.45,.94);
+    --r:18px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff);background:var(--o);color:var(--m);overflow-x:hidden;line-height:1.6}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.35}50%{transform:scale(1.07);opacity:.6}}
+@keyframes pulse-wa{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+@keyframes ripple{from{transform:scale(0);opacity:1}to{transform:scale(3);opacity:0}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes scrollDrop{0%{transform:translateY(-6px);opacity:0}50%{opacity:1}100%{transform:translateY(8px);opacity:0}}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.25s}.d3{transition-delay:.38s}.d4{transition-delay:.52s}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:.75rem 5%;background:rgba(240,222,212,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(147,100,80,.1);transition:all .35s var(--ease)}
+header.scrolled{padding:.5rem 5%;background:rgba(240,222,212,.98);box-shadow:0 2px 20px rgba(82,31,2,.07)}
+.logo-img{height:50px;width:auto;transition:transform .4s var(--sp)}.logo-img:hover{transform:scale(1.07)}
+nav{display:flex;align-items:center;gap:2rem}
+nav a{font-size:.78rem;font-weight:500;text-transform:uppercase;letter-spacing:2px;color:var(--m);position:relative}
+nav a.ativo{color:var(--t)}
+nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--t);transition:width .3s ease}
+nav a:hover::after,nav a.ativo::after{width:100%}
+.btn-hdr{background:var(--t);color:var(--w);padding:9px 24px;border-radius:50px;font-size:.73rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;border:1.5px solid var(--t);transition:all .3s ease}
+.btn-hdr:hover{background:transparent;color:var(--t)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;z-index:1001}
+.ham span{display:block;width:25px;height:2px;background:var(--m);border-radius:2px;transition:all .3s ease}
+.ham.ativo span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.ham.ativo span:nth-child(2){opacity:0}
+.ham.ativo span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mnav{display:none;position:fixed;inset:0;background:var(--c);z-index:899;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;transition:opacity .3s ease}
+.mnav.aberto{display:flex;opacity:1}
+.mnav a{font-size:1.8rem;font-weight:300;color:var(--m);letter-spacing:-.5px}
+.mnav a:hover,.mnav a.ativo{color:var(--t)}
+.mnav .btn-mob{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;background:var(--t);color:white;padding:14px 36px;border-radius:50px}
+
+/* HERO */
+.hero{min-height:100svh;background:linear-gradient(155deg,var(--m) 0%,#6b2c10 45%,var(--t) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+.orb1{position:absolute;top:-100px;left:-100px;width:420px;height:420px;border-radius:50%;background:radial-gradient(ellipse,rgba(115,122,106,.22) 0%,transparent 70%);animation:breathe 9s ease-in-out infinite}
+.orb2{position:absolute;bottom:-120px;right:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(ellipse,rgba(230,191,161,.13) 0%,transparent 70%);animation:breathe 11s ease-in-out infinite reverse}
+.hero-bg-txt{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:20vw;font-weight:700;color:rgba(255,255,255,.025);white-space:nowrap;pointer-events:none;letter-spacing:-3px;user-select:none}
+.hero-inner{position:relative;z-index:1;max-width:700px}
+.eyebrow{display:inline-block;font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:5px;color:var(--b);background:rgba(230,191,161,.1);border:1px solid rgba(230,191,161,.2);padding:6px 20px;border-radius:50px;margin-bottom:1.8rem;animation:fadeIn .9s ease both}
+.hero h1{font-size:clamp(2.4rem,6.5vw,4.5rem);font-weight:300;letter-spacing:-1.5px;color:white;line-height:1.08;margin-bottom:1.4rem;animation:fadeUp .9s ease .2s both}
+.hero h1 em{font-style:italic;color:var(--b)}
+.hero-sub{font-size:clamp(.88rem,2vw,1rem);font-weight:300;color:rgba(255,255,255,.58);max-width:520px;margin:0 auto 2.8rem;line-height:1.9;animation:fadeUp .9s ease .38s both}
+.hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .9s ease .55s both}
+.btn-pri{display:inline-flex;align-items:center;gap:8px;background:var(--t);color:white;padding:14px 32px;border-radius:50px;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;border:2px solid var(--t);transition:all .3s ease;position:relative;overflow:hidden}
+.btn-pri:hover{background:transparent;color:white;border-color:rgba(255,255,255,.6);transform:translateY(-3px)}
+.btn-gho{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);color:white;padding:14px 32px;border-radius:50px;font-size:.78rem;font-weight:500;text-transform:uppercase;letter-spacing:2px;border:2px solid rgba(255,255,255,.22);backdrop-filter:blur(6px);transition:all .3s ease}
+.btn-gho:hover{border-color:var(--b);color:var(--b);transform:translateY(-3px)}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:1;display:flex;flex-direction:column;align-items:center;gap:7px;font-size:.58rem;font-weight:500;text-transform:uppercase;letter-spacing:3px;color:rgba(255,255,255,.5);animation:fadeIn 2s ease 1.5s both}
+.scroll-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);animation:scrollDrop 1.8s ease-in-out infinite}
+
+/* MARQUEE */
+.mq-wrap{background:var(--t);padding:14px 0;overflow:hidden}
+.mq-track{display:flex;white-space:nowrap;animation:marquee 20s linear infinite}
+.mq-item{display:inline-flex;align-items:center;gap:16px;font-size:.67rem;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:rgba(255,255,255,.8);padding:0 30px}
+.mq-item i{color:var(--b);font-size:.55rem}
+
+/* SEÇÕES */
+.sec{padding:100px 5%}
+.sec--c{background:var(--c)}
+.sec--e{background:var(--m)}
+.eta{display:block;font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:4px;color:var(--s);margin-bottom:.8rem}
+.eta--b{color:var(--b)}
+.tit{font-size:clamp(1.8rem,4.5vw,3rem);font-weight:300;letter-spacing:-.8px;color:var(--m);line-height:1.15;margin-bottom:1rem}
+.tit--w{color:white}
+.tit em{font-style:italic;color:var(--t)}
+.tit--w em{color:var(--b)}
+.sub{font-size:.91rem;font-weight:300;color:#7a4e38;line-height:1.95}
+.sub--w{color:rgba(255,255,255,.55)}
+.div-l{display:block;width:0;height:1.5px;background:var(--b);margin:1rem 0 1.8rem;opacity:0;transition:width .9s ease,opacity .9s ease}
+.div-l.visible{width:52px;opacity:1}
+
+/* COMO FUNCIONA */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.quote-card{background:var(--c);border-radius:var(--r);padding:52px 44px;position:relative;overflow:hidden}
+.quote-card::before{content:'"';position:absolute;top:-30px;left:10px;font-size:18rem;color:rgba(147,100,80,.06);line-height:1;pointer-events:none;font-style:italic}
+.q-txt{font-size:clamp(1rem,2.2vw,1.35rem);font-weight:300;font-style:italic;color:var(--m);line-height:1.7;position:relative;z-index:1;margin-bottom:1.4rem}
+.q-autor{font-size:.63rem;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--t)}
+.q-tag{position:absolute;bottom:-18px;right:24px;background:var(--s);color:white;padding:11px 20px;border-radius:50px;font-size:.64rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;box-shadow:0 6px 20px rgba(115,122,106,.3);animation:floatY 4s ease-in-out infinite}
+.steps{display:flex;flex-direction:column;gap:28px;margin-top:2rem}
+.step{display:flex;gap:18px;align-items:flex-start}
+.step-n{width:38px;height:38px;flex-shrink:0;border-radius:50%;background:rgba(147,100,80,.1);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--t);transition:all .35s var(--sp)}
+.step:hover .step-n{background:var(--t);color:white;transform:scale(1.12)}
+.step h4{font-size:.88rem;font-weight:600;color:var(--m);margin-bottom:.35rem}
+.step p{font-size:.83rem;font-weight:300;color:#7a4e38;line-height:1.75}
+
+/* TERAPIAS */
+.t-intro{max-width:540px;margin-bottom:58px}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tc{border-radius:var(--r);padding:32px 26px 28px;position:relative;overflow:hidden;border:1.5px solid transparent;transition:transform .35s var(--sp),border-color .3s ease,box-shadow .3s ease;background:var(--c)}
+.tc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--t),var(--b));transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.tc:hover{transform:translateY(-7px);border-color:var(--b);box-shadow:0 20px 50px rgba(147,100,80,.13)}
+.tc:hover::before{transform:scaleX(1)}
+.tc-ico{width:46px;height:46px;border-radius:13px;background:rgba(147,100,80,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--t);margin-bottom:1.1rem;transition:all .35s var(--sp)}
+.tc:hover .tc-ico{background:var(--t);color:white;transform:scale(1.12) rotate(6deg)}
+.tc-nome{font-size:.95rem;font-weight:600;color:var(--m);margin-bottom:.45rem}
+.tc-lema{font-size:.79rem;font-weight:400;font-style:italic;color:var(--t);margin-bottom:.9rem;min-height:2.2em}
+.tc-desc{font-size:.82rem;font-weight:300;color:#7a4e38;line-height:1.8}
+.tc--e{background:linear-gradient(145deg,#5c3020,var(--m))}
+.tc--e .tc-nome{color:white}.tc--e .tc-lema{color:var(--b)}.tc--e .tc-desc{color:rgba(255,255,255,.6)}
+.tc--e .tc-ico{background:rgba(255,255,255,.1);color:var(--b)}.tc--e:hover .tc-ico{background:rgba(255,255,255,.2);color:white}
+.tc--e::before{background:linear-gradient(90deg,var(--b),rgba(230,191,161,.3))}
+.tc--r{background:linear-gradient(145deg,#3a2a5c,#6040a0)}
+.tc--r .tc-nome{color:white}.tc--r .tc-lema{color:#c8b4f0}.tc--r .tc-desc{color:rgba(255,255,255,.6)}
+.tc--r .tc-ico{background:rgba(255,255,255,.12);color:#c8b4f0}.tc--r:hover .tc-ico{background:rgba(155,127,212,.35);color:white}
+.tc--r::before{background:linear-gradient(90deg,#9b7fd4,#c8b4f0)}
+
+/* SENSAÇÕES */
+.sens-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px}
+.sens-item{padding:48px 36px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:background .3s ease;position:relative;overflow:hidden}
+.sens-item:hover{background:rgba(255,255,255,.08)}
+.sens-num{font-size:4rem;font-weight:300;letter-spacing:-2px;color:rgba(230,191,161,.14);line-height:1;margin-bottom:.8rem}
+.sens-item h3{font-size:.95rem;font-weight:600;color:white;margin-bottom:.6rem}
+.sens-item p{font-size:.83rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.85}
+.sens-ico-bg{position:absolute;bottom:22px;right:22px;font-size:1.4rem;color:rgba(230,191,161,.1)}
+
+/* IMMERSION */
+.imm{background:var(--c);padding:100px 5%;text-align:center;position:relative;overflow:hidden}
+.imm::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(ellipse,rgba(230,191,161,.35) 0%,transparent 70%);pointer-events:none}
+.imm>*{position:relative;z-index:1}
+.imm-frase{font-size:clamp(1.25rem,3.5vw,2.1rem);font-weight:300;font-style:italic;color:var(--m);max-width:680px;margin:0 auto 1.2rem;line-height:1.5}
+.imm-frase em{color:var(--t)}
+.imm-sub{font-size:.77rem;font-weight:500;text-transform:uppercase;letter-spacing:3px;color:var(--s);margin-bottom:2.8rem}
+.btn-conf{display:inline-flex;align-items:center;gap:8px;background:var(--t);color:white;padding:14px 32px;border-radius:50px;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;border:2px solid var(--t);transition:all .3s ease;position:relative;overflow:hidden}
+.btn-conf:hover{background:transparent;color:var(--t);transform:translateY(-3px)}
+
+/* COMBOS */
+.cb-split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;margin-bottom:60px}
+.cb-visual{background:var(--m);border-radius:var(--r);padding:44px;position:relative;overflow:hidden}
+.cb-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(230,191,161,.12),transparent 60%)}
+.cb-frase{font-size:clamp(1rem,2.2vw,1.4rem);font-weight:300;font-style:italic;color:var(--w);line-height:1.65;margin-bottom:1.2rem;position:relative;z-index:1}
+.cb-frase strong{font-weight:600;color:var(--b)}
+.cb-autor{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:rgba(255,255,255,.32);position:relative;z-index:1}
+.jornada{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.jc{background:white;border-radius:var(--r);padding:30px 24px;border:1.5px solid rgba(147,100,80,.1);transition:all .35s var(--sp)}
+.jc:hover{transform:translateY(-5px);border-color:var(--b);box-shadow:0 16px 40px rgba(147,100,80,.11)}
+.jc-tag{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--s);display:flex;align-items:center;gap:8px;margin-bottom:.9rem}
+.jc-tag::before{content:'';display:block;width:16px;height:1px;background:var(--b)}
+.jc-nome{font-size:1rem;font-weight:600;color:var(--m);margin-bottom:.6rem;line-height:1.3}
+.jc-desc{font-size:.82rem;font-weight:300;color:#7a4e38;line-height:1.8;margin-bottom:1.1rem}
+.jc-sentir{background:rgba(147,100,80,.06);border-radius:11px;padding:12px 13px;margin-bottom:1.1rem}
+.jc-sentir-lbl{font-size:.57rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--s);margin-bottom:4px}
+.jc-sentir p{font-size:.78rem;font-style:italic;color:var(--t);line-height:1.55}
+.jc-link{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t);transition:gap .25s ease}
+.jc-link:hover{gap:10px}
+.jc-link i{font-size:.65rem;transition:transform .25s ease}
+.jc-link:hover i{transform:translateX(3px)}
+.jc--d{background:linear-gradient(145deg,var(--m),#7a3510);border-color:transparent}
+.jc--d .jc-nome{color:white}.jc--d .jc-desc{color:rgba(255,255,255,.58)}
+.jc--d .jc-tag{color:var(--b)}.jc--d .jc-tag::before{background:var(--b)}
+.jc--d .jc-sentir{background:rgba(255,255,255,.07)}
+.jc--d .jc-sentir-lbl{color:var(--b)}.jc--d .jc-sentir p{color:rgba(255,255,255,.78)}
+.jc--d .jc-link{color:var(--b)}.jc--d:hover{border-color:var(--b)}
+
+/* CTA PREÇOS */
+.cta-p{background:linear-gradient(135deg,var(--m) 0%,#6b2c10 100%);padding:100px 5%;text-align:center;position:relative;overflow:hidden}
+.cta-p::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(147,100,80,.25) 0%,transparent 60%);pointer-events:none}
+.cta-p>*{position:relative;z-index:1}
+.cta-p .eta{color:var(--b)}
+.cta-p .tit{color:white;margin-bottom:1rem}
+.cta-p .sub{color:rgba(255,255,255,.52);max-width:440px;margin:0 auto 2.8rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-vp{display:inline-flex;align-items:center;gap:9px;background:var(--b);color:var(--m);padding:16px 36px;border-radius:50px;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;transition:all .35s var(--sp);position:relative;overflow:hidden}
+.btn-vp:hover{background:white;transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.14)}
+.btn-vp i{transition:transform .3s ease}.btn-vp:hover i{transform:translateX(4px)}
+.btn-wa-c{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);color:white;padding:16px 36px;border-radius:50px;font-size:.8rem;font-weight:500;text-transform:uppercase;letter-spacing:2px;border:2px solid rgba(255,255,255,.2);transition:all .3s ease}
+.btn-wa-c:hover{background:#25d366;border-color:#25d366;transform:translateY(-3px)}
+
+/* FOOTER */
+footer{background:#2e1208;color:white;padding:46px 5% 28px}
+.fi{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:22px}
+.fl{height:36px;filter:brightness(0) invert(1);opacity:.6}
+.flinks{display:flex;gap:1.5rem;flex-wrap:wrap}
+.flinks a{font-size:.78rem;font-weight:300;color:rgba(255,255,255,.5);transition:color .3s ease}
+.flinks a:hover,.flinks a.ativo{color:var(--b)}
+.fsoc{display:flex;gap:9px}
+.soc{width:33px;height:33px;border-radius:50%;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.45);font-size:.78rem;transition:all .3s ease}
+.soc:hover{border-color:var(--b);color:var(--b);transform:translateY(-3px)}
+.fcopy{font-size:.7rem;color:rgba(255,255,255,.22)}
+
+.wa-float{position:fixed;bottom:26px;right:26px;z-index:800;width:58px;height:58px;border-radius:50%;background:#25d366;color:white;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 5px 18px rgba(37,211,102,.35);animation:pulse-wa 2.5s infinite;transition:transform .3s ease,background .3s ease}
+.wa-float:hover{transform:scale(1.1);background:#20ba5a}
+.btn-rpl{position:absolute;border-radius:50%;background:rgba(255,255,255,.3);transform:scale(0);animation:ripple .55s linear;pointer-events:none}
+
+/* MODAL */
+@keyframes modalIn{from{opacity:0;transform:translateY(50px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes overlayIn{from{opacity:0}to{opacity:1}}
+.modal-ov{display:none;position:fixed;inset:0;z-index:2000;background:rgba(20,8,0,.6);backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:16px}
+.modal-ov.aberto{display:flex;animation:overlayIn .3s ease both}
+.modal-box{background:var(--w);border-radius:24px;width:100%;max-width:540px;max-height:92vh;overflow-y:auto;position:relative;animation:modalIn .4s var(--sp) both;scrollbar-width:thin;scrollbar-color:var(--b) transparent}
+.modal-box::-webkit-scrollbar{width:4px}.modal-box::-webkit-scrollbar-thumb{background:var(--b);border-radius:4px}
+.modal-img{width:100%;height:220px;object-fit:cover;border-radius:24px 24px 0 0;display:block}
+.modal-img-placeholder{width:100%;height:220px;border-radius:24px 24px 0 0;display:flex;align-items:center;justify-content:center;font-size:3rem}
+.modal-inner{padding:28px 28px 32px}
+.modal-fechar{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;z-index:10;transition:all .25s ease;background:rgba(0,0,0,.25);color:white}
+.modal-fechar:hover{background:rgba(0,0,0,.4);transform:scale(1.1)}
+.modal-fechar--claro{background:rgba(82,31,2,.1);color:var(--m)}.modal-fechar--claro:hover{background:rgba(82,31,2,.2)}
+.modal-eta{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--s);margin-bottom:.5rem;display:block}
+.modal-nome{font-size:1.35rem;font-weight:600;color:var(--m);margin-bottom:.3rem;letter-spacing:-.3px}
+.modal-lema{font-size:.88rem;font-style:italic;font-weight:300;color:var(--t);margin-bottom:1.2rem}
+.modal-desc{font-size:.88rem;font-weight:300;color:#6b4a38;line-height:1.9;margin-bottom:1.4rem}
+.modal-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.4rem}
+.modal-tag{background:rgba(147,100,80,.08);color:var(--t);border:1px solid rgba(147,100,80,.18);padding:5px 14px;border-radius:50px;font-size:.7rem;font-weight:600;letter-spacing:.5px}
+.modal-indicado{background:rgba(115,122,106,.07);border-left:3px solid var(--s);border-radius:0 10px 10px 0;padding:14px 16px;margin-bottom:1.6rem}
+.modal-indicado-lbl{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--s);margin-bottom:5px}
+.modal-indicado p{font-size:.84rem;font-weight:400;color:#5a4030;line-height:1.65}
+.modal-extras{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.6rem}
+.modal-extra-item{background:rgba(147,100,80,.05);border-radius:12px;padding:12px 14px}
+.modal-extra-item i{color:var(--t);font-size:.85rem;margin-bottom:5px;display:block}
+.modal-extra-item p{font-size:.78rem;font-weight:300;color:#6b4a38;line-height:1.5}
+.modal-acoes{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.btn-modal-wa{display:inline-flex;align-items:center;gap:7px;background:#25d366;color:white;padding:12px 22px;border-radius:50px;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;transition:all .3s ease;position:relative;overflow:hidden;white-space:nowrap}
+.btn-modal-wa:hover{background:#20ba5a;transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,.3)}
+.btn-modal-preco{display:inline-flex;align-items:center;gap:6px;color:var(--t);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;transition:gap .25s ease;text-decoration:underline;text-underline-offset:3px}
+.btn-modal-preco:hover{gap:10px}
+
+@media(max-width:960px){
+    .split,.cb-split{grid-template-columns:1fr;gap:50px}
+    .t-grid{grid-template-columns:repeat(2,1fr)}
+    .sens-grid,.jornada{grid-template-columns:1fr}
+    .sens-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
+}
+@media(max-width:640px){
+    nav,.btn-hdr{display:none}.ham{display:flex}
+    .sec{padding:68px 5%}.hero{padding:110px 20px 70px}
+    .hero-ctas{flex-direction:column;align-items:center}
+    .btn-pri,.btn-gho{width:100%;justify-content:center;text-align:center}
+    .t-grid{grid-template-columns:1fr}
+    .cta-btns{flex-direction:column;align-items:center}
+    .btn-vp,.btn-wa-c{width:100%;justify-content:center;text-align:center}
+    .fi{flex-direction:column;align-items:flex-start;gap:14px}
+    .q-tag{right:8px;font-size:.6rem;padding:9px 14px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="hdr">
+    <a href="index.html"><img src="logo.png" alt="Spirare" class="logo-img"></a>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="massagens.html" class="ativo">A Experiência</a>
+        <a href="precos.html">Preços</a>
+    </nav>
+    <a href="https://wa.me/5548992055109?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20%F0%9F%8C%BF" class="btn-hdr" target="_blank">Agendar</a>
+    <div class="ham" id="ham"><span></span><span></span><span></span></div>
+</header>
+
+<nav class="mnav" id="mnav">
+    <a href="index.html" class="ml">Início</a>
+    <a href="massagens.html" class="ml ativo">A Experiência</a>
+    <a href="precos.html" class="ml">Preços</a>
+    <a href="https://wa.me/5548992055109?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20%F0%9F%8C%BF" class="btn-mob" target="_blank"><i class="fab fa-whatsapp"></i> Agendar</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="orb1"></div><div class="orb2"></div>
+    <div class="hero-bg-txt">SPIRARE</div>
+    <div class="hero-inner">
+        <span class="eyebrow">A Experiência Spirare</span>
+        <h1>Imagine parar.<br><em>Só respirar.</em><br>Só sentir.</h1>
+        <p class="hero-sub">Aqui não há pressa. Não há notificações. Só existe você, o toque certo e a sensação de que tudo vai ficar bem. Essa é a Spirare.</p>
+        <div class="hero-ctas">
+            <a href="#como-funciona" class="btn-pri">Descobrir a experiência</a>
+            <a href="precos.html" class="btn-gho"><i class="fas fa-tag"></i> Conferir valores</a>
+        </div>
+    </div>
+    <div class="scroll-hint">Role <div class="scroll-dot"></div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq-wrap"><div class="mq-track">
+    <span class="mq-item">Relaxamento Profundo <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Alívio de Dores <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Equilíbrio Energético <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Leveza no Corpo <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Paz Interior <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Cuidado com Intenção <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Reconexão Consigo <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Respirar Melhor <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Relaxamento Profundo <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Alívio de Dores <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Equilíbrio Energético <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Leveza no Corpo <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Paz Interior <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Cuidado com Intenção <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Reconexão Consigo <i class="fas fa-circle"></i></span>
+    <span class="mq-item">Respirar Melhor <i class="fas fa-circle"></i></span>
+</div></div>
+
+<!-- COMO FUNCIONA -->
+<section class="sec" id="como-funciona">
+    <div class="split">
+        <div>
+            <span class="eta reveal">Como funciona</span>
+            <h2 class="tit reveal d1">Do momento em que você <em>chega</em> ao momento em que vai embora</h2>
+            <span class="div-l reveal d2"></span>
+            <p class="sub reveal d2">Uma sessão na Spirare não começa na maca — começa no instante em que você decide que merece um momento só seu. E termina muito depois de você ir embora, na leveza que fica.</p>
+            <div class="steps reveal d3">
+                <div class="step"><div class="step-n">01</div><div><h4>Acolhimento e escuta</h4><p>Antes de qualquer toque, a Jéssica conversa com você — entende seu momento, o que o corpo está pedindo. Cada sessão começa com atenção real.</p></div></div>
+                <div class="step"><div class="step-n">02</div><div><h4>O ambiente que acalma</h4><p>Luz suave, temperatura certa, música que dissolve o pensamento. Tudo pensado para que seu sistema nervoso entenda: aqui é seguro relaxar.</p></div></div>
+                <div class="step"><div class="step-n">03</div><div><h4>O toque com intenção</h4><p>Técnicas escolhidas para o seu momento específico. Cada movimento tem propósito — aliviar, soltar, nutrir. Não é só massagem: é presença total.</p></div></div>
+                <div class="step"><div class="step-n">04</div><div><h4>A leveza que fica</h4><p>Você vai embora diferente. O corpo mais leve, a mente mais quieta. Essa sensação é real — e é o que faz as pessoas voltarem.</p></div></div>
+            </div>
+        </div>
+        <div class="reveal d2" style="position:relative;padding-bottom:28px">
+            <div class="quote-card">
+                <p class="q-txt">"Cada pessoa que chega aqui carrega o peso do dia. Meu trabalho é ajudar o corpo a lembrar que ele sabe descansar."</p>
+                <p class="q-autor">— Jéssica Rech · Spirare</p>
+            </div>
+            <div class="q-tag">🌿 Presença total</div>
+        </div>
+    </div>
+</section>
+
+<!-- TERAPIAS -->
+<section class="sec sec--c" id="terapias">
+    <div class="t-intro reveal">
+        <span class="eta">O que você pode viver aqui</span>
+        <h2 class="tit">Cada terapia é <em>uma experiência única</em></h2>
+        <span class="div-l"></span>
+        <p class="sub">Toque em qualquer terapia para saber mais — o que é, para quem é indicada e o que você pode esperar sentir.</p>
+    </div>
+    <div class="t-grid">
+
+        <!-- Relaxante -->
+        <div class="tc reveal" style="cursor:pointer" onclick="abrirModal(this)"
+            data-nome="Massagem Relaxante"
+            data-lema="&quot;Desligar o mundo. Finalmente.&quot;"
+            data-eta="Massagens Clássicas"
+            data-cor="creme"
+            data-icone="fas fa-feather-alt"
+            data-img="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=600&q=80"
+            data-desc="Feita com movimentos suaves, contínuos e rítmicos, a Massagem Relaxante é a escolha perfeita para desconectar do mundo. Seus movimentos lentos e envolventes convencem o sistema nervoso de que está seguro para soltar — tudo aquilo que você vinha segurando."
+            data-indicado="Estresse, ansiedade, cansaço mental e do dia a dia. Ideal para quem precisa simplesmente parar e respirar."
+            data-tags="Relaxamento profundo|Redução do estresse|Alívio da ansiedade"
+            data-extra1-ico="fas fa-clock" data-extra1="Duração média de 60 a 90 minutos"
+            data-extra2-ico="fas fa-hand-sparkles" data-extra2="Movimentos suaves, lentos e rítmicos"
+            data-wa="Massagem%20Relaxante">
+            <div class="tc-ico"><i class="fas fa-feather-alt"></i></div>
+            <h3 class="tc-nome">Relaxante</h3>
+            <p class="tc-lema">"Desligar o mundo. Finalmente."</p>
+            <p class="tc-desc">Da suavidade que acalma à leveza que fica. Movimentos que convencem o corpo de que está seguro para soltar.</p>
+            <span style="display:inline-flex;align-items:center;gap:5px;margin-top:1rem;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t)"><i class="fas fa-plus" style="font-size:.6rem"></i> Saber mais</span>
+        </div>
+
+        <!-- Terapêutica -->
+        <div class="tc reveal d1" style="cursor:pointer" onclick="abrirModal(this)"
+            data-nome="Massagem Terapêutica"
+            data-lema="&quot;Para as dores que você já aprendeu a ignorar.&quot;"
+            data-eta="Massagens Clássicas"
+            data-cor="creme"
+            data-icone="fas fa-hand-holding-medical"
+            data-img="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80"
+            data-desc="Focada no alívio de dores e tensões musculares, a Massagem Terapêutica utiliza uma pressão mais firme e direcionada para desfazer nós — as famosas contraturas musculares. Ela vai onde a dor mora e libera."
+            data-indicado="Dores nas costas, tensão no pescoço e ombros, cansaço físico intenso e contraturas musculares."
+            data-tags="Alívio de dores|Liberação muscular|Mobilidade"
+            data-extra1-ico="fas fa-compress-arrows-alt" data-extra1="Pressão firme e direcionada"
+            data-extra2-ico="fas fa-walking" data-extra2="Melhora a mobilidade e flexibilidade"
+            data-wa="Massagem%20Terap%C3%AAutica">
+            <div class="tc-ico"><i class="fas fa-hand-holding-medical"></i></div>
+            <h3 class="tc-nome">Terapêutica</h3>
+            <p class="tc-lema">"Para as dores que você já aprendeu a ignorar."</p>
+            <p class="tc-desc">Pressão firme e direcionada para desfazer nós musculares e aliviar dores crônicas de verdade.</p>
+            <span style="display:inline-flex;align-items:center;gap:5px;margin-top:1rem;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t)"><i class="fas fa-plus" style="font-size:.6rem"></i> Saber mais</span>
+        </div>
+
+        <!-- Modeladora -->
+        <div class="tc reveal d2" style="cursor:pointer" onclick="abrirModal(this)"
+            data-nome="Massagem Modeladora"
+            data-lema="&quot;Ativação que você sente no dia seguinte.&quot;"
+            data-eta="Massagens Clássicas"
+            data-cor="creme"
+            data-icone="fas fa-spa"
+            data-img="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80"
+            data-desc="Realizada com movimentos mais rápidos, firmes e intensos, a Massagem Modeladora ativa a circulação, melhora a oxigenação dos tecidos e estimula o metabolismo local. O bem-estar vem junto com os resultados estéticos."
+            data-indicado="Quem deseja melhorar a circulação, reduzir medidas e manter o corpo mais ativo e leve."
+            data-tags="Circulação ativa|Redução de medidas|Corpo mais leve"
+            data-extra1-ico="fas fa-bolt" data-extra1="Movimentos rápidos, firmes e intensos"
+            data-extra2-ico="fas fa-fire-alt" data-extra2="Ativa o metabolismo local"
+            data-wa="Massagem%20Modeladora">
+            <div class="tc-ico"><i class="fas fa-spa"></i></div>
+            <h3 class="tc-nome">Modeladora</h3>
+            <p class="tc-lema">"Ativação que você sente no dia seguinte."</p>
+            <p class="tc-desc">Movimentos intensos que acordam a circulação e deixam o corpo mais ativo e leve.</p>
+            <span style="display:inline-flex;align-items:center;gap:5px;margin-top:1rem;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t)"><i class="fas fa-plus" style="font-size:.6rem"></i> Saber mais</span>
+        </div>
+
+        <!-- Facial -->
+        <div class="tc reveal" style="cursor:pointer" onclick="abrirModal(this)"
+            data-nome="Massagem Facial"
+            data-lema="&quot;Cuidado onde o dia pesou mais.&quot;"
+            data-eta="Massagens Clássicas"
+            data-cor="creme"
+            data-icone="fas fa-smile-beam"
+            data-img="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80"
+            data-desc="Uma técnica delicada que relaxa a musculatura do rosto, alivia tensões acumuladas — ótima para quem aperta o maxilar sem perceber — e estimula a circulação, deixando a pele com um aspecto mais viçoso e descansado."
+            data-indicado="Quem aperta o maxilar, sente tensão no rosto, quer cuidar da pele e viver um momento de autocuidado real."
+            data-tags="Relaxamento facial|Alívio do maxilar|Pele mais viçosa"
+            data-extra1-ico="fas fa-leaf" data-extra1="Técnica suave e delicada"
+            data-extra2-ico="fas fa-tint" data-extra2="Estimula circulação e vitalidade da pele"
+            data-wa="Massagem%20Facial">
+            <div class="tc-ico"><i class="fas fa-smile-beam"></i></div>
+            <h3 class="tc-nome">Facial</h3>
+            <p class="tc-lema">"Cuidado onde o dia pesou mais."</p>
+            <p class="tc-desc">Delicada e intencional, descomprime tensões do rosto e deixa a pele com aspecto de descanso real.</p>
+            <span style="display:inline-flex;align-items:center;gap:5px;margin-top:1rem;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t)"><i class="fas fa-plus" style="font-size:.6rem"></i> Saber mais</span>
+        </div>
+
+        <!-- Reflexologia + Escalda-pés -->
+        <div class="tc reveal d1" style="cursor:pointer" onclick="abrirModal(this)"
+            data-nome="Reflexologia + Escalda-pés"
+            data-lema="&quot;Um ritual de chegada em si.&quot;"
+            data-eta="Massagens Clássicas"
+            data-cor="creme"
+            data-icone="fas fa-shoe-prints"
+            data-img="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80"
+            data-desc="Muito mais que uma massagem nos pés. A Reflexologia baseia-se na pressão de pontos específicos na sola dos pés que estão conectados a todos os órgãos do corpo. Combinada ao Escalda-pés — um mergulho acolhedor em água morna com sais e ervas — prepara e renova o corpo inteiro."
+            data-indicado="Cansaço nos pés e nas pernas, estresse acumulado, desejo de relaxamento profundo e equilíbrio energético."
+            data-tags="Equilíbrio energético|Alívio do cansaço|Bem-estar geral"
+            data-extra1-ico="fas fa-water" data-extra1="Inclui escalda-pés com sais e ervas"
+            data-extra2-ico="fas fa-project-diagram" data-extra2="Conecta pontos dos pés a órgãos do corpo"
+            data-wa="Reflexologia%20%2B%20Escalda-p%C3%A9s">
+            <div class="tc-ico"><i class="fas fa-shoe-prints"></i></div>
+            <h3 class="tc-nome">Reflexologia + Escalda-pés</h3>
+            <p class="tc-lema">"Um ritual de chegada em si."</p>
+            <p class="tc-desc">Pelos pés, cada ponto trabalhado repercute em órgãos, emoções e energia do corpo inteiro.</p>
+            <span style="display:inline-flex;align-items:center;gap:5px;margin-top:1rem;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t)"><i class="fas fa-plus" style="font-size:.6rem"></i> Saber mais</span>
+        </div>
+
+        <!-- Drenagem -->
+        <div class="tc tc--e reveal d2" style="cursor:pointer" onclick="abrirModal(this)"
+            data-nome="Drenagem Linfática"
+            data-lema="&quot;Leveza de dentro para fora.&quot;"
+            data-eta="Técnicas Especiais"
+            data-cor="escuro"
+            data-icone="fas fa-tint"
+            data-img="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80"
+            data-desc="Com movimentos levíssimos e lentos, a Drenagem Linfática age como um detox natural. Estimula o sistema linfático a eliminar toxinas e líquidos retidos, combatendo o inchaço, a sensação de peso e promovendo desintoxicação do organismo."
+            data-indicado="Inchaço, retenção de líquidos, cuidados no pós-operatório e quem deseja uma sensação de leveza real."
+            data-tags="Eliminação de toxinas|Redução de inchaço|Pós-operatório"
+            data-extra1-ico="fas fa-feather" data-extra1="Movimentos levíssimos e lentos"
+            data-extra2-ico="fas fa-shield-alt" data-extra2="Estimula o sistema imunológico"
+            data-wa="Drenagem%20Linf%C3%A1tica">
+            <div class="tc-ico"><i class="fas fa-tint"></i></div>
+            <h3 class="tc-nome">Drenagem Linfática</h3>
+            <p class="tc-lema">"Leveza de dentro para fora."</p>
+            <p class="tc-desc">O inchaço some, o peso vai embora. O corpo lembra como é ser leve de verdade.</p>
+            <span style="display:inline-flex;align-items:center;gap:5px;margin-top:1rem;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--b)"><i class="fas fa-plus" style="font-size:.6rem"></i> Saber mais</span>
+        </div>
+
+        <!-- Ventosaterapia -->
+        <div class="tc tc--e reveal" style="cursor:pointer" onclick="abrirModal(this)"
+            data-nome="Terapêutica com Ventosas"
+            data-lema="&quot;Onde a dor estava, circulação chega.&quot;"
+            data-eta="Técnicas Especiais"
+            data-cor="escuro"
+            data-icone="fas fa-circle-notch"
+            data-img="https://images.unsplash.com/photo-1598901865264-4f57341f0b32?w=600&q=80"
+            data-desc="Utiliza copos de sucção aplicados na pele para aumentar a circulação sanguínea local. É altamente eficaz para soltar a musculatura travada, aliviar dores agudas e melhorar a mobilidade — chegando onde as mãos sozinhas não chegam."
+            data-indicado="Dores musculares intensas, tensão acumulada nas costas, pescoço travado e quem precisa de alívio mais profundo."
+            data-tags="Dores agudas|Musculatura travada|Melhora da mobilidade"
+            data-extra1-ico="fas fa-circle" data-extra1="Copos de sucção aplicados na pele"
+            data-extra2-ico="fas fa-tachometer-alt" data-extra2="Aumenta circulação sanguínea local"
+            data-wa="Terap%C3%AAutica%20com%20Ventosas">
+            <div class="tc-ico"><i class="fas fa-circle-notch"></i></div>
+            <h3 class="tc-nome">Ventosaterapia</h3>
+            <p class="tc-lema">"Onde a dor estava, circulação chega."</p>
+            <p class="tc-desc">Para tensões profundas que resistem a tudo. As ventosas chegam onde o corpo resistia — e liberam.</p>
+            <span style="display:inline-flex;align-items:center;gap:5px;margin-top:1rem;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--b)"><i class="fas fa-plus" style="font-size:.6rem"></i> Saber mais</span>
+        </div>
+
+        <!-- Pedras Quentes -->
+        <div class="tc tc--e reveal d1" style="cursor:pointer" onclick="abrirModal(this)"
+            data-nome="Pedras Quentes"
+            data-lema="&quot;Como se o estresse derretesse.&quot;"
+            data-eta="Técnicas Especiais"
+            data-cor="escuro"
+            data-icone="fas fa-fire"
+            data-img="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=600&q=80"
+            data-desc="A combinação perfeita entre o toque manual e o calor das pedras vulcânicas basálticas. O calor penetra profundamente na musculatura, promovendo vasodilatação, aliviando tensões e proporcionando um estado de relaxamento que vai além do físico — é uma entrega total."
+            data-indicado="Estresse intenso, tensão muscular profunda, quem busca relaxamento extremo e uma experiência sensorial única."
+            data-tags="Relaxamento extremo|Calor profundo|Alívio de tensões"
+            data-extra1-ico="fas fa-fire" data-extra1="Pedras vulcânicas basálticas aquecidas"
+            data-extra2-ico="fas fa-heartbeat" data-extra2="Promove vasodilatação e circulação"
+            data-wa="Pedras%20Quentes">
+            <div class="tc-ico"><i class="fas fa-fire"></i></div>
+            <h3 class="tc-nome">Pedras Quentes</h3>
+            <p class="tc-lema">"Como se o estresse derretesse."</p>
+            <p class="tc-desc">O calor das pedras vulcânicas penetra fundo. Uma rendição completa — o corpo se entrega.</p>
+            <span style="display:inline-flex;align-items:center;gap:5px;margin-top:1rem;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--b)"><i class="fas fa-plus" style="font-size:.6rem"></i> Saber mais</span>
+        </div>
+
+        <!-- Reiki -->
+        <div class="tc tc--e reveal d2" style="cursor:pointer" onclick="abrirModal(this)"
+            data-nome="Reiki"
+            data-lema="&quot;Quando o que pesa não é físico.&quot;"
+            data-eta="Terapias Energéticas"
+            data-cor="escuro"
+            data-icone="fas fa-yin-yang"
+            data-img="https://images.unsplash.com/photo-1591343395082-e120087004b4?w=600&q=80"
+            data-desc="Terapia puramente energética feita através da imposição das mãos — com ou sem toque físico. O Reiki trabalha nos centros de energia do corpo (chacras), trazendo equilíbrio emocional, clareza mental e um profundo estado de paz interior que surpreende quem experimenta pela primeira vez."
+            data-indicado="Ansiedade, desequilíbrio emocional, sensação de estagnação, insônia e quem busca paz interior e clareza."
+            data-tags="Equilíbrio energético|Paz interior|Clareza mental"
+            data-extra1-ico="fas fa-hands" data-extra1="Com ou sem toque físico direto"
+            data-extra2-ico="fas fa-spa" data-extra2="Trabalha nos centros de energia do corpo"
+            data-wa="Reiki">
+            <div class="tc-ico"><i class="fas fa-yin-yang"></i></div>
+            <h3 class="tc-nome">Reiki</h3>
+            <p class="tc-lema">"Quando o que pesa não é físico."</p>
+            <p class="tc-desc">Trabalha no campo energético trazendo paz interior, clareza mental e alívio que surpreende.</p>
+            <span style="display:inline-flex;align-items:center;gap:5px;margin-top:1rem;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--b)"><i class="fas fa-plus" style="font-size:.6rem"></i> Saber mais</span>
+        </div>
+
+        <!-- Hipnose -->
+        <div class="tc tc--r reveal" style="cursor:pointer" onclick="abrirModal(this)"
+            data-nome="Hipnose Terapêutica"
+            data-lema="&quot;Transformar o que a mente guarda.&quot;"
+            data-eta="Terapias da Mente"
+            data-cor="roxo"
+            data-icone="fas fa-brain"
+            data-img="https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=600&q=80"
+            data-desc="Técnica terapêutica que acessa o subconsciente para identificar e transformar padrões, crenças limitantes e emoções que sabotam a vida cotidiana. A hipnose não é sono — é um estado de atenção focada onde a mente fica mais receptiva a mudanças profundas e duradouras."
+            data-indicado="Medos, fobias, ansiedade, hábitos difíceis de mudar, bloqueios emocionais, baixa autoestima e transformação pessoal."
+            data-tags="Transformação pessoal|Bloqueios emocionais|Hábitos e medos"
+            data-extra1-ico="fas fa-brain" data-extra1="Acessa padrões do subconsciente"
+            data-extra2-ico="fas fa-infinity" data-extra2="Resultados profundos e duradouros"
+            data-sem-preco="true"
+            data-wa="Hipnose%20Terap%C3%AAutica">
+            <div class="tc-ico"><i class="fas fa-brain"></i></div>
+            <h3 class="tc-nome">Hipnose</h3>
+            <p class="tc-lema">"Transformar o que a mente guarda."</p>
+            <p class="tc-desc">Acessa o subconsciente onde padrões e medos resistem — e abre espaço para uma versão mais leve de você.</p>
+            <span style="display:inline-flex;align-items:center;gap:5px;margin-top:1rem;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#c8b4f0"><i class="fas fa-plus" style="font-size:.6rem"></i> Saber mais</span>
+        </div>
+
+        <!-- Experiência Completa -->
+        <div class="tc tc--e reveal d1" style="cursor:pointer" onclick="abrirModal(this)"
+            data-nome="Experiência Completa"
+            data-lema="&quot;O melhor dos dois mundos em uma sessão.&quot;"
+            data-eta="Técnicas Especiais"
+            data-cor="escuro"
+            data-icone="fas fa-star"
+            data-img="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=600&q=80"
+            data-desc="A Experiência Completa combina técnicas relaxantes com Ventosaterapia e Pedras Quentes em uma única sessão. É a escolha de quem quer um cuidado mais completo — o calor das pedras, a liberação das ventosas e o relaxamento profundo da massagem, tudo junto."
+            data-indicado="Quem deseja um cuidado mais intenso e completo, aliando relaxamento profundo ao alívio de tensões musculares."
+            data-tags="Cuidado completo|Relaxamento intenso|Técnicas combinadas"
+            data-extra1-ico="fas fa-layer-group" data-extra1="Ventosas + Pedras Quentes + Massagem"
+            data-extra2-ico="fas fa-star" data-extra2="A sessão mais completa da Spirare"
+            data-wa="Experi%C3%AAncia%20Completa">
+            <div class="tc-ico"><i class="fas fa-star"></i></div>
+            <h3 class="tc-nome">Experiência Completa</h3>
+            <p class="tc-lema">"O melhor dos dois mundos em uma sessão."</p>
+            <p class="tc-desc">Ventosas + Pedras Quentes + Massagem. Um cuidado intenso e completo para quem quer tudo de uma vez.</p>
+            <span style="display:inline-flex;align-items:center;gap:5px;margin-top:1rem;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--b)"><i class="fas fa-plus" style="font-size:.6rem"></i> Saber mais</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- SENSAÇÕES -->
+<section class="sec sec--e">
+    <span class="eta eta--b reveal">O que você leva</span>
+    <h2 class="tit tit--w reveal d1" style="max-width:520px">Não é só uma massagem.<br><em>É o que fica depois.</em></h2>
+    <div class="sens-grid">
+        <div class="sens-item reveal">
+            <div class="sens-num">01</div>
+            <h3>O silêncio que o corpo pede</h3>
+            <p>Num mundo que não para, sua sessão é o único momento em que você tem permissão — e razão — para parar completamente. O sistema nervoso agradece.</p>
+            <i class="fas fa-feather-alt sens-ico-bg"></i>
+        </div>
+        <div class="sens-item reveal d1">
+            <div class="sens-num">02</div>
+            <h3>Um corpo que funciona melhor</h3>
+            <p>Dores que eram constantes diminuem. A mobilidade melhora. A postura muda. O corpo lembra como é funcionar sem resistência.</p>
+            <i class="fas fa-heartbeat sens-ico-bg"></i>
+        </div>
+        <div class="sens-item reveal d2">
+            <div class="sens-num">03</div>
+            <h3>A leveza que dura dias</h3>
+            <p>A sensação pós-sessão não passa em horas — ela se instala. Você carrega um pouquinho da Spirare de volta para a sua vida.</p>
+            <i class="fas fa-sun sens-ico-bg"></i>
+        </div>
+    </div>
+</section>
+
+<!-- QUOTE IMERSIVA -->
+<section class="imm">
+    <p class="imm-frase reveal">"Você não precisa estar em crise para merecer cuidado. <em>Você merece porque existe.</em>"</p>
+    <p class="imm-sub reveal d1">— A filosofia da Spirare</p>
+    <a href="precos.html" class="btn-conf reveal d2"><i class="fas fa-arrow-right"></i> Conferir preços e sessões</a>
+</section>
+
+<!-- COMBOS -->
+<section class="sec" id="combos">
+    <div class="cb-split">
+        <div>
+            <span class="eta reveal">Uma jornada de cuidado</span>
+            <h2 class="tit reveal d1">Nossos combos:<br><em>cuidado que acumula</em></h2>
+            <span class="div-l reveal d2"></span>
+            <p class="sub reveal d2">Uma sessão já transforma. Mas quando o cuidado se torna contínuo, o corpo muda de um jeito diferente — mais profundo, mais duradouro. Nossos combos criam uma rotina de bem-estar que respeita o tempo do seu corpo e potencializa cada sessão.</p>
+            <a href="precos.html" class="jc-link reveal d3" style="margin-top:1.5rem;display:inline-flex;color:var(--t)"><i class="fas fa-tag"></i> Ver valores dos combos <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="cb-visual reveal d2">
+            <p class="cb-frase">"O corpo aprende com a constância. <strong>Cada sessão prepara o terreno para a próxima.</strong> É assim que a transformação acontece de verdade."</p>
+            <p class="cb-autor">— Jéssica Rech</p>
+        </div>
+    </div>
+
+    <div class="jornada">
+        <div class="jc reveal">
+            <span class="jc-tag">Equilíbrio</span>
+            <h3 class="jc-nome">Combo Equilíbrio</h3>
+            <p class="jc-desc">Para quem precisa desacelerar e manter o equilíbrio ao longo do mês. Uma sessão por semana que se torna o seu momento sagrado.</p>
+            <div class="jc-sentir"><p class="jc-sentir-lbl">Você vai sentir</p><p>Menos estresse acumulado, mais clareza mental, um corpo que para de gritar por atenção.</p></div>
+            <a href="precos.html" class="jc-link">Ver valores <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="jc jc--d reveal d1">
+            <span class="jc-tag">Experiência completa</span>
+            <h3 class="jc-nome">Relax &amp; Energia</h3>
+            <p class="jc-desc">Relaxamento profundo com equilíbrio energético. Para quando o corpo cansa e a alma também precisa de atenção.</p>
+            <div class="jc-sentir"><p class="jc-sentir-lbl">Você vai sentir</p><p>Uma renovação que vai além do físico — como se tivessem recarregado algo em você.</p></div>
+            <a href="precos.html" class="jc-link">Ver valores <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="jc reveal d2">
+            <span class="jc-tag">Para o corpo</span>
+            <h3 class="jc-nome">Combo Corpo Leve</h3>
+            <p class="jc-desc">Para quem carrega inchaço e a sensação de que o corpo não é seu aliado. Semana a semana, ele volta a se sentir leve.</p>
+            <div class="jc-sentir"><p class="jc-sentir-lbl">Você vai sentir</p><p>Roupas diferentes no mesmo corpo. Leveza real, não só estética.</p></div>
+            <a href="precos.html" class="jc-link">Ver valores <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="jc reveal">
+            <span class="jc-tag">Intensivo</span>
+            <h3 class="jc-nome">Alívio Profundo</h3>
+            <p class="jc-desc">Para dores que já viraram companheiras de vida. Um protocolo que ataca as tensões na raiz — física e emocional.</p>
+            <div class="jc-sentir"><p class="jc-sentir-lbl">Você vai sentir</p><p>Aquela dor crônica diminuir. O corpo funcionar de novo com menos esforço.</p></div>
+            <a href="precos.html" class="jc-link">Ver valores <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="jc reveal d1">
+            <span class="jc-tag">Estético</span>
+            <h3 class="jc-nome">Combo em Harmonia</h3>
+            <p class="jc-desc">Para quem quer resultado estético sem abrir mão do bem-estar. A beleza que vem do cuidado real e consistente.</p>
+            <div class="jc-sentir"><p class="jc-sentir-lbl">Você vai sentir</p><p>Um corpo mais definido e ativo — e a satisfação de cuidar de si com constância.</p></div>
+            <a href="precos.html" class="jc-link">Ver valores <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="jc jc--d reveal d2">
+            <span class="jc-tag">Premium</span>
+            <h3 class="jc-nome">Premium Integrativo</h3>
+            <p class="jc-desc">A experiência mais completa da Spirare — corpo, mente e energia, adaptados ao seu momento ao longo das semanas.</p>
+            <div class="jc-sentir"><p class="jc-sentir-lbl">Você vai sentir</p><p>Uma transformação real. Não só em como você sente — em como você vive.</p></div>
+            <a href="precos.html" class="jc-link">Ver valores <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-p">
+    <span class="eta reveal">Próximo passo</span>
+    <h2 class="tit reveal d1">Pronto para viver <em>essa experiência?</em></h2>
+    <p class="sub reveal d2">Veja os valores, escolha seu momento e dê o primeiro passo. A Jéssica está aqui para te orientar com carinho — sem pressa, sem pressão.</p>
+    <div class="cta-btns reveal d3">
+        <a href="precos.html" class="btn-vp"><i class="fas fa-arrow-right"></i> Ver preços e sessões</a>
+        <a href="https://wa.me/5548992055109?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20as%20terapias%20da%20Spirare%20%F0%9F%8C%BF" target="_blank" class="btn-wa-c"><i class="fab fa-whatsapp"></i> Falar com a Jéssica</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="fi">
+        <img src="logo.png" alt="Spirare" class="fl">
+        <div class="flinks">
+            <a href="index.html">Início</a>
+            <a href="massagens.html" class="ativo">A Experiência</a>
+            <a href="precos.html">Preços</a>
+        </div>
+        <div class="fsoc">
+            <a href="https://instagram.com/spirare_studio" target="_blank" class="soc"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5548992055109" target="_blank" class="soc"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </div>
+    <p class="fcopy">© 2026 Spirare Terapias Integrativas · Todos os direitos reservados.</p>
+</footer>
+
+<a href="https://wa.me/5548992055109?text=Ol%C3%A1%2C%20vim%20pelo%20site%20%F0%9F%8C%BF" class="wa-float" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<!-- MODAL -->
+<div class="modal-ov" id="modalOv">
+    <div class="modal-box" id="modalBox">
+        <button class="modal-fechar" id="modalFechar" aria-label="Fechar"><i class="fas fa-times"></i></button>
+        <img id="modalImg" class="modal-img" src="" alt="" style="display:none">
+        <div id="modalImgPlaceholder" class="modal-img-placeholder" style="display:none"></div>
+        <div class="modal-inner">
+            <span class="modal-eta" id="modalEta"></span>
+            <h2 class="modal-nome" id="modalNome"></h2>
+            <p class="modal-lema" id="modalLema"></p>
+            <p class="modal-desc" id="modalDesc"></p>
+            <div class="modal-tags" id="modalTags"></div>
+            <div class="modal-indicado">
+                <p class="modal-indicado-lbl">✔ Indicado para</p>
+                <p id="modalIndicado"></p>
+            </div>
+            <div class="modal-extras" id="modalExtras"></div>
+            <div class="modal-acoes" id="modalAcoes"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+const hdr = document.getElementById('hdr');
+window.addEventListener('scroll', () => hdr.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+const ham = document.getElementById('ham');
+const mnav = document.getElementById('mnav');
+ham.addEventListener('click', () => {
+    ham.classList.toggle('ativo');
+    mnav.classList.toggle('aberto');
+    document.body.style.overflow = mnav.classList.contains('aberto') ? 'hidden' : '';
+});
+document.querySelectorAll('.ml, .btn-mob').forEach(el => el.addEventListener('click', () => {
+    ham.classList.remove('ativo');
+    mnav.classList.remove('aberto');
+    document.body.style.overflow = '';
+}));
+
+const ro = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal, .div-l').forEach(el => ro.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+});
+
+// Ripple
+document.querySelectorAll('.btn-pri, .btn-gho, .btn-conf, .btn-vp').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        const r = document.createElement('span');
+        r.className = 'btn-rpl';
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height) * 2;
+        r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px;`;
+        this.appendChild(r);
+        setTimeout(() => r.remove(), 600);
+    });
+});
+
+// Parallax orbs
+if (window.innerWidth > 768) {
+    const o1 = document.querySelector('.orb1');
+    const o2 = document.querySelector('.orb2');
+    if (o1 && o2) {
+        window.addEventListener('scroll', () => {
+            const s = window.scrollY;
+            if (s < window.innerHeight) {
+                o1.style.transform = `translateY(${s * 0.15}px)`;
+                o2.style.transform = `translateY(${s * -0.1}px)`;
+            }
+        }, { passive: true });
+    }
+}
+
+// ===================== MODAL =====================
+const modalOv       = document.getElementById('modalOv');
+const modalFechar   = document.getElementById('modalFechar');
+const modalImg      = document.getElementById('modalImg');
+const modalImgPh    = document.getElementById('modalImgPlaceholder');
+const modalEta      = document.getElementById('modalEta');
+const modalNome     = document.getElementById('modalNome');
+const modalLema     = document.getElementById('modalLema');
+const modalDesc     = document.getElementById('modalDesc');
+const modalTags     = document.getElementById('modalTags');
+const modalIndicado = document.getElementById('modalIndicado');
+const modalExtras   = document.getElementById('modalExtras');
+const modalAcoes    = document.getElementById('modalAcoes');
+const modalBox      = document.getElementById('modalBox');
+
+// Cores do placeholder por tipo
+const corPlaceholder = {
+    creme:  'linear-gradient(135deg,#f0ded4,#e6bfa1)',
+    escuro: 'linear-gradient(135deg,#5c3020,#521f02)',
+    roxo:   'linear-gradient(135deg,#3a2a5c,#6040a0)',
+};
+const iconePlaceholder = {
+    creme:  '<i class="fas fa-spa" style="color:rgba(147,100,80,.35)"></i>',
+    escuro: '<i class="fas fa-spa" style="color:rgba(230,191,161,.3)"></i>',
+    roxo:   '<i class="fas fa-spa" style="color:rgba(200,180,240,.3)"></i>',
+};
+
+function abrirModal(card) {
+    const d = card.dataset;
+    const cor = d.cor || 'creme';
+    const semPreco = d.semPreco === 'true';
+
+    // Imagem ou placeholder
+    if (d.img) {
+        modalImg.src = d.img;
+        modalImg.alt = d.nome;
+        modalImg.style.display = 'block';
+        modalImgPh.style.display = 'none';
+        // Fallback se a imagem falhar
+        modalImg.onerror = function() {
+            this.style.display = 'none';
+            modalImgPh.style.display = 'flex';
+            modalImgPh.style.background = corPlaceholder[cor];
+            modalImgPh.innerHTML = iconePlaceholder[cor];
+        };
+    } else {
+        modalImg.style.display = 'none';
+        modalImgPh.style.display = 'flex';
+        modalImgPh.style.background = corPlaceholder[cor];
+        modalImgPh.innerHTML = iconePlaceholder[cor];
+    }
+
+    // Botão fechar
+    modalFechar.className = cor === 'creme' ? 'modal-fechar modal-fechar--claro' : 'modal-fechar';
+
+    // Conteúdo
+    modalEta.textContent = d.eta || '';
+    modalNome.textContent = d.nome || '';
+    modalLema.textContent = d.lema ? d.lema.replace(/&quot;/g, '"') : '';
+    modalDesc.textContent = d.desc || '';
+    modalIndicado.textContent = d.indicado || '';
+
+    // Tags
+    modalTags.innerHTML = '';
+    if (d.tags) {
+        d.tags.split('|').forEach(tag => {
+            const s = document.createElement('span');
+            s.className = 'modal-tag';
+            s.textContent = tag.trim();
+            modalTags.appendChild(s);
+        });
+    }
+
+    // Extras
+    modalExtras.innerHTML = '';
+    if (d.extra1Ico && d.extra1) {
+        modalExtras.innerHTML += `<div class="modal-extra-item"><i class="${d.extra1Ico}"></i><p>${d.extra1}</p></div>`;
+    }
+    if (d.extra2Ico && d.extra2) {
+        modalExtras.innerHTML += `<div class="modal-extra-item"><i class="${d.extra2Ico}"></i><p>${d.extra2}</p></div>`;
+    }
+
+    // Ações
+    const waLink = `https://wa.me/5548992055109?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20${d.wa || ''}%20%F0%9F%8C%BF`;
+    if (semPreco) {
+        modalAcoes.innerHTML = `
+            <a href="${waLink}" target="_blank" class="btn-modal-wa"><i class="fab fa-whatsapp"></i> Consultar valores</a>`;
+    } else {
+        modalAcoes.innerHTML = `
+            <a href="${waLink}" target="_blank" class="btn-modal-wa"><i class="fab fa-whatsapp"></i> Agendar</a>
+            <a href="precos.html" class="btn-modal-preco"><i class="fas fa-tag"></i> Ver preço <i class="fas fa-arrow-right"></i></a>`;
+    }
+
+    modalOv.classList.add('aberto');
+    document.body.style.overflow = 'hidden';
+    // Scroll do modal pro topo
+    modalBox.scrollTop = 0;
+}
+
+function fecharModal() {
+    modalOv.classList.remove('aberto');
+    document.body.style.overflow = '';
+}
+
+modalFechar.addEventListener('click', fecharModal);
+modalOv.addEventListener('click', e => { if (e.target === modalOv) fecharModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharModal(); });
+</script>
+</body>
+</html>
